@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 author: Maier Christoph
-date: 17.06.2025
+date: 18.06.2025
 
 This module is a selection of functions for the manipulation of generated
 measurement data with an oscilloscope.
@@ -11,34 +11,52 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl5
 
+
+'''
+    This function reads a .csv file from a Oscilloscope measurement with one
+    trace. The csv needs to be separated with a comma (','), at the moment. No
+    check is present if this is not the case! The first column is the time 
+    vector and the second column is the measured value.
+    
+    Input Parameters:
+        filename    string which stores the filename (including path) of the
+                    .csv file
+        header_num  Gives the number of header lines. Since i do not know if 
+                    every osci has only one header line, better to make it 
+                    flexible.
+    
+    Output parameters:
+        time        vector (list) containing the time points
+        yval        vector (list) containing the measured voltage points
+'''
 def read_csv_1trace(filename, header_num):
     
     data = []
     time = []
     yval = []
-            
+    
     with open(filename, 'r') as file:
         for cnt in range(header_num):
-            first_line = file.readline()
+            file.readline()
         for line in file:
-            line = line.strip()
-            data.append(line)
-                
-                
-
+            row = [float(x) for x in line.split(',')]
+            data.append(row)
             
             
-    print(data)
+    print(data[0])
     print('\n')
+    print(type(data))
+
     
-                    
-
-    #dev_type = header[0][1]
-
     
     for cnt in range(len(data)):
         time.append(data[cnt][0])
         yval.append(data[cnt][1])
+    
+    print('\n')
+    print(time)
+    print('\n')
+    print(yval)
                             
     return [time, yval]
 
