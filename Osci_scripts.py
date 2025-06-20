@@ -77,3 +77,25 @@ def mul_measurements_1ch(filename, filepath, header_num):
         yval.append(yval_temp)
 
     return [time, yval]
+
+
+'''
+    This function normalizes the time vector. Often it starts at negative time
+    values (depending on the trigger). This function shift the time vector, so
+    that it starts at 0s. Should also work if time vector only consists positive
+    values.
+    
+    Input Parameters:
+        time_old     Old time vector, consisting negative time
+        
+    Output Parameters:
+        time         Shifted time vector, starting at 0s
+'''
+def time_normalizer(time_old):
+    
+    time = []
+    
+    min_val = np.min(time_old)
+    time = time_old - min_val
+
+    return time
