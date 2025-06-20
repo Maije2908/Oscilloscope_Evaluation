@@ -99,3 +99,37 @@ def time_normalizer(time_old):
     time = time_old - min_val
 
     return time
+
+
+'''
+    This function plots multiple traces in one plot.
+    
+    Input Parameters:
+        time       time matrix, consisting of the time data vectors
+        yval       voltage matrix, consisting of the measured voltage vecotrs
+        title      string consisting the title of the plot
+        xlabel     string including the label of the x-axis
+        ylabel     string including the label of the y-axis
+        legend     vector of strings consisting of the legend
+        xfit       optional argument for the left and right xlim
+        
+    Output Parameters:
+        NONE
+'''
+def multiplot(time, yval, title, xlabel, ylabel, legend, xfit = None):
+        
+    plt.figure()
+
+    for cnt in range(len(time)):
+        plt.plot(time[cnt], yval[cnt])
+        
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.legend(legend)
+    if xfit != None:
+        plt.xlim(xfit)
+    plt.grid(which='both', axis='both')
+       
+    plt.tight_layout()
+    plt.show
