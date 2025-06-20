@@ -41,22 +41,9 @@ def read_csv_1trace(filename, header_num):
         for line in file:
             row = [float(x) for x in line.split(',')]
             data.append(row)
-            
-            
-    print(data[0])
-    print('\n')
-    print(type(data))
-
-    
     
     for cnt in range(len(data)):
         time.append(data[cnt][0])
         yval.append(data[cnt][1])
-    
-    print('\n')
-    print(time)
-    print('\n')
-    print(yval)
                             
     return [time, yval]
-
