@@ -23,7 +23,7 @@ import matplotlib as mpl5
                     .csv file
         header_num  Gives the number of header lines. Since i do not know if 
                     every osci has only one header line, better to make it 
-                    flexible.
+                    flexible
     
     Output parameters:
         time        vector (list) containing the time points
@@ -46,4 +46,34 @@ def read_csv_1trace(filename, header_num):
         time.append(data[cnt][0])
         yval.append(data[cnt][1])
                             
+    return [time, yval]
+
+
+'''
+    This function takes the filename of multiple .csv file from a 1 channel
+    osci measurement, extracts the data and stores them in a matrix. It uses
+    the function 'read_csv_1trace' for the extraction of data.
+    
+    Input Parameters:
+        filename        string which stores the filename of the .csv file
+        filepath        filepath for the stored data
+        header_num      Gives the number of header lines. Since i do not know if 
+                        every osci has only one header line, better to make it 
+                        flexible
+                        
+    Output parameters:
+        time        matrix (list) containing the time points
+        yval        matrix (list) containing the measured voltage points
+'''
+
+def mul_measurements_1ch(filename, filepath, header_num):
+    
+    time = []
+    yval = []   
+    
+    for file in filename:
+        [time_temp, yval_temp] = read_csv_1trace(filepath + file, header_num)
+        time.append(time_temp)
+        yval.append(yval_temp)
+
     return [time, yval]
